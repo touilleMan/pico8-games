@@ -87,7 +87,13 @@ function _update()
 		new_y = ply.y + GRAVITY
 	end
 
-	if not collision_on_pos(ply.x + 3, new_y + 3) then
+	-- collision on top or bottom of the sprite
+	if (new_y < ply.y) then
+		collision_y = new_y
+	else
+		collision_y = new_y + 7
+	end
+	if not collision_on_pos(ply.x + 3, collision_y) then
 		-- in air
 		ply.inair = true
 		ply.y = new_y
